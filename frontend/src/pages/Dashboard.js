@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../api/axios";
 import { Link } from "react-router-dom";
+import UserList from "../components/UserList";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
@@ -35,47 +36,23 @@ const Dashboard = () => {
     }
   };
 
-  if (loading) return <p>Loading users...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
-
   return (
-    <div>
-      <h1>User Dashboard</h1>
-      <Link to="/add-user">
-        <button>Add New User</button>
-      </Link>
-      {users.length === 0 ? (
-        <p>No users found.</p>
-      ) : (
-        <table border="1" cellPadding="10" cellSpacing="0">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user._id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.phone}</td>
-                <td>
-                  <Link to={`/users/${user._id}`}>
-                    <button>View</button>
-                  </Link>
-                  <Link to={`/edit/${user._id}`}>
-                    <button>Edit</button>
-                  </Link>
-                  <button onClick={() => handleDelete(user._id)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+    <div className="container">
+      <div className="page-header">
+        <h1>User Dashboard</h1>
+        <Link to="/add-user" className="btn btn-primary">
+          Add New User
+        </Link>
+      </div>
+      
+      <div className="page-content">
+        <UserList 
+          users={users} 
+          onDelete={handleDelete} 
+          loading={loading} 
+          error={error} 
+        />
+      </div>
     </div>
   );
 };

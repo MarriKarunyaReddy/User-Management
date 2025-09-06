@@ -17,9 +17,14 @@ const AddUser = () => {
   };
 
   return (
-    <div>
-      <h1>Add New User</h1>
-      <UserForm onSubmit={handleAdd} submitText="Add User" />
+    <div className="container">
+      <div className="page-header">
+        <h1>Add New User</h1>
+      </div>
+      
+      <div className="page-content">
+        <UserForm onSubmit={handleAdd} submitText="Add User" />
+      </div>
     </div>
   );
 };
