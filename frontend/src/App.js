@@ -6,19 +6,17 @@ import AddUser from "./pages/AddUser";
 import EditUser from "./pages/EditUser";
 import UserDetails from "./pages/UserDetails";
 
-const App = () => {
+function App() {
   return (
     <Router>
-      <div>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/add-user" element={<AddUser />} />
-          <Route path="/edit/:id" element={<EditUser />} />
-          <Route path="/users/:id" element={<UserDetails />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/add-user" element={<AddUser />} />
+        <Route path="/edit/:id" element={<EditUser />} />
+        <Route path="/users/:id" element={<UserDetails />} />
+      </Routes>
     </Router>
   );
-};
+}
 
 export default App;
